@@ -132,9 +132,16 @@ def build_dict(use_nouns=True):
             'values': [1] * len(EMOTIONS)}
 
 def get_args():
+    if len(sys.argv) == 2 and sys.argv[1] in ('-a', '--adjectives'):
+        return {'use_nouns': False}
     if len(sys.argv) == 2:
-        return {'use_nouns': sys.argv[1] not in ('-a', '--adjectives')}
+        print_usage()
+        sys.exit(1)
     return {'use_nouns': True}
+
+
+def print_usage():
+    print('USAGE: {} [-a | --adjectives]'.format(sys.argv[0]))
 
 
 def main():
